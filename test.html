@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it">
+    <head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Test sp button es">
+    
+    <title>Test sp button es per SPID</title>
+    
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="public/js/spid_button.min.js"></script>
+    
+    </head>
+    <body>
+
+        <H3>Test bottone spid</H3>
+        <div id="spid-button">
+            <noscript>
+                Il login tramite SPID richiede che JavaScript sia abilitato nel browser.
+            </noscript>
+        </div>
+
+        <script type="text/javascript">
+            SPID.init({url: "/autenticazione/spid", eidas: true, path_img: 'public/img/spid'});
+        </script>
+    
+    </body>
+</html>
