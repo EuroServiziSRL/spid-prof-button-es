@@ -16,19 +16,19 @@ style.innerHTML = `
     overflow: hidden;
 }
 
-#spid-button *{
+#spid-prof-button *{
     box-sizing: content-box !important;
 } 
-#spid-button .italia-it-button-icon, #spid-button .italia-it-button-text {
+#spid-prof-button .italia-it-button-icon, #spid-prof-button .italia-it-button-text {
     display: block;
     float: left;
 }
-#spid-button .italia-it-button-icon {
+#spid-prof-button .italia-it-button-icon {
     margin: 0 -.4em 0 0;
     padding: 0.6em .8em .5em;
     border-right: rgba(255, 255, 255, 0.1) 0.1em solid;
 }
-#spid-button .italia-it-button-text {
+#spid-prof-button .italia-it-button-text {
     padding: .95em 1em .85em 1em;
     font-size: 1.15em;
     text-align: center;
@@ -38,66 +38,66 @@ svg {
     height: 1.8em;
     fill: #fff;
 }
-#spid-button .italia-it-block {
+#spid-prof-button .italia-it-block {
     display: block;
 }
-#spid-button .italia-it-button-size-s {
+#spid-prof-button .italia-it-button-size-s {
     font-size: 10px;
     width: 150px;
 }
-#spid-button .italia-it-button-size-s > span img {
+#spid-prof-button .italia-it-button-size-s > span img {
     width: 19px;
     height: 19px;
     border: 0;
 }
-#spid-button .italia-it-button-size-m {
+#spid-prof-button .italia-it-button-size-m {
     font-size: 14px;
     width: 220px;
 }
-#spid-button .italia-it-button-size-m > span img {
+#spid-prof-button .italia-it-button-size-m > span img {
     width: 29px;
     height: 29px;
     border: 0;
 }
-#spid-button .italia-it-button-size-l {
+#spid-prof-button .italia-it-button-size-l {
     font-size: 20px;
     width: 280px;
 }
-#spid-button .italia-it-button-size-l > span img {
+#spid-prof-button .italia-it-button-size-l > span img {
     width: 38px;
     height: 38px;
     border: 0;
 }
-#spid-button .italia-it-button-size-xl {
+#spid-prof-button .italia-it-button-size-xl {
     font-size: 25px;
     width: 340px;
 }
-#spid-button .italia-it-button-size-xl > span img {
+#spid-prof-button .italia-it-button-size-xl > span img {
     width: 47px;
     height: 47px;
     border: 0;
 }
-#spid-button .button-spid {
+#spid-prof-button .button-spid {
     background-color: #06C;
     color: #FFF;
 }
-#spid-button .button-spid svg {
+#spid-prof-button .button-spid svg {
     fill: #FFF;
 }
-#spid-button .button-spid:hover {
+#spid-prof-button .button-spid:hover {
     background-color: #036;
     color: #FFF;
 }
-#spid-button .button-spid:active {
+#spid-prof-button .button-spid:active {
     background-color: #83BEED;
     color: #036;
 }
-#spid-button .spid-idp-button {
+#spid-prof-button .spid-idp-button {
     position: absolute;
     z-index: 1039;
     display: none;
 }
-#spid-button .spid-idp-button .spid-idp-button-menu, #spid-button .spid-idp-button .spid-idp-button-panel {
+#spid-prof-button .spid-idp-button .spid-idp-button-menu, #spid-prof-button .spid-idp-button .spid-idp-button-panel {
     list-style: none;
     background: white;
     border: solid 1px #ddd;
@@ -106,22 +106,22 @@ svg {
     padding: 0;
     margin: 0;
 }
-#spid-button #spid-idp-button-small-get, #spid-button #spid-idp-button-medium-get, #spid-button #spid-idp-button-small-post, #spid-button #spid-idp-button-medium-post {
+#spid-prof-button #spid-idp-button-small-get, #spid-prof-button #spid-idp-button-medium-get, #spid-prof-button #spid-idp-button-small-post, #spid-prof-button #spid-idp-button-medium-post {
     width: 230px;
 }
-#spid-button #spid-idp-button-large-get, #spid-button #spid-idp-button-large-post {
+#spid-prof-button #spid-idp-button-large-get, #spid-prof-button #spid-idp-button-large-post {
     width: 270px;
 }
-#spid-button #spid-idp-button-xlarge-get, #spid-button #spid-idp-button-xlarge-post {
+#spid-prof-button #spid-idp-button-xlarge-get, #spid-prof-button #spid-idp-button-xlarge-post {
     width: 330px;
 }
-#spid-button .spid-idp-button .spid-idp-button-panel {
+#spid-prof-button .spid-idp-button .spid-idp-button-panel {
     padding: 10px;
 }
-#spid-button .spid-idp-button.spid-idp-button-tip {
+#spid-prof-button .spid-idp-button.spid-idp-button-tip {
     margin-top: 8px;
 }
-#spid-button .spid-idp-button.spid-idp-button-tip:before {
+#spid-prof-button .spid-idp-button.spid-idp-button-tip:before {
     position: absolute;
     top: -6px;
     left: 9px;
@@ -131,7 +131,7 @@ svg {
     border-bottom: 7px solid #ddd;
     display: inline-block;
 }
-#spid-button .spid-idp-button.spid-idp-button-tip:after {
+#spid-prof-button .spid-idp-button.spid-idp-button-tip:after {
     position: absolute;
     top: -5px;
     left: 10px;
@@ -141,25 +141,25 @@ svg {
     border-bottom: 6px solid white;
     display: inline-block;
 }
-#spid-button .spid-idp-button.spid-idp-button-tip.spid-idp-button-anchor-right:before {
+#spid-prof-button .spid-idp-button.spid-idp-button-tip.spid-idp-button-anchor-right:before {
     left: auto;
     right: 9px;
 }
-#spid-button .spid-idp-button.spid-idp-button-tip.spid-idp-button-anchor-right:after {
+#spid-prof-button .spid-idp-button.spid-idp-button-tip.spid-idp-button-anchor-right:after {
     left: auto;
     right: 10px;
 }
-#spid-button .spid-idp-button.spid-idp-button-scroll .spid-idp-button-menu, #spid-button .spid-idp-button.spid-idp-button-scroll .spid-idp-button-panel {
+#spid-prof-button .spid-idp-button.spid-idp-button-scroll .spid-idp-button-menu, #spid-prof-button .spid-idp-button.spid-idp-button-scroll .spid-idp-button-panel {
     max-height: 180px;
     overflow: auto;
 }
-#spid-button .spid-idp-button .spid-idp-button-menu li {
+#spid-prof-button .spid-idp-button .spid-idp-button-menu li {
     list-style: none;
     padding: 0 0;
     margin: 0;
     line-height: 18px;
 }
-#spid-button .spid-idp-button .spid-idp-button-menu li > a, #spid-button .spid-idp-button .spid-idp-button-menu label {
+#spid-prof-button .spid-idp-button .spid-idp-button-menu li > a, #spid-prof-button .spid-idp-button .spid-idp-button-menu label {
     display: block;
     font-family: "Titillium Web", HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
     font-weight: 600;
@@ -171,17 +171,17 @@ svg {
     white-space: nowrap;
     border-bottom: 1px solid #ddd;
 }
-#spid-button .spid-idp-button .spid-idp-button-menu li > a:hover, #spid-button .spid-idp-button .spid-idp-button-menu label:hover {
+#spid-prof-button .spid-idp-button .spid-idp-button-menu li > a:hover, #spid-prof-button .spid-idp-button .spid-idp-button-menu label:hover {
     color: #036;
     cursor: pointer;
     background-color: #F0F0F0;
 }
-#spid-button .spid-idp-button .spid-idp-button-menu li > a img {
+#spid-prof-button .spid-idp-button .spid-idp-button-menu li > a img {
     height: 25px;
     padding: 10px 0 10px 10px;
     border: 0;
 }
-#spid-button .idp-button-idp-logo {
+#spid-prof-button .idp-button-idp-logo {
     font-size: 100%;
     height: 10%;
     width: 100%;
@@ -192,27 +192,27 @@ svg {
     text-align: left;
     cursor: pointer;
 }
-#spid-button .idp-button-idp-logo:hover {
+#spid-prof-button .idp-button-idp-logo:hover {
     background-color: #F0F0F0;
 }
-#spid-button .idp-button-idp-logo img {
+#spid-prof-button .idp-button-idp-logo img {
     height: 25px;
     vertical-align: middle;
     cursor: pointer;
 }
-#spid-button .spid-top-menu-space-10 > a img {
+#spid-prof-button .spid-top-menu-space-10 > a img {
     margin-top: 10px;
 }
-#spid-button .spid-top-menu-space-20 > a img {
+#spid-prof-button .spid-top-menu-space-20 > a img {
     margin-top: 20px;
 }
-#spid-button .spid-top-menu-line {
+#spid-prof-button .spid-top-menu-line {
     border-top: 5px solid #000;
 }
-#spid-button .spid-idp-support-link > a {
+#spid-prof-button .spid-idp-support-link > a {
     padding: 5px 0 10px 10px;
 }
-#spid-button .spid-sr-only {
+#spid-prof-button .spid-sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -360,14 +360,6 @@ svg {
 `;
 document.head.appendChild(style);
 
-// class SPID{
-//     constructor(hash){
-//         this.url = hash['url'];
-//         alert("ciao");
-//     }
-// }
-
-
 /* js per bottone spid sp */
 jQuery &&
     (function (t) {
@@ -435,16 +427,17 @@ jQuery &&
 
 
 /* classe per inizializzare bottone come spid-smart-button se inserito placeholder in pagina e inizializzata classe */
-var SPID = (function () {
-    /* SPID.init() FACTORY METHOD */
+var SPIDPROF = (function () {
+    /* SPIDPROF.init() FACTORY METHOD */
 
     var defaults = {
-        path_img:   '/public/img/spid',
+        path_img: '/public/img/spid',
         url: 'sso_init',
-        eidas: false
+        eidas: false,
+        tipo_accesso: ''
     };
 
-    // class for objects returned by SPID.init()
+    // class for objects returned by SPIDPROF.init()
     var spidObj = function (config) {
         this.config = config;
     };
@@ -453,13 +446,13 @@ var SPID = (function () {
         var spid = this;
         
         // only the first matching placeholder will be rendered
-        // var placeholder = document.querySelector("#spid-button");
+        // var placeholder = document.querySelector("#spid-prof-button");
         // if (!placeholder) {
         //     console.warn('Nessun placeholder HTML trovato nella pagina per i pulsanti SPID.');
         //     return;
         // }
         
-        if ($("#spid-button").length == 0) {
+        if ($("#spid-prof-button").length == 0) {
             console.warn('Nessun placeholder HTML trovato nella pagina per i pulsanti SPID.');
             return;
         }
@@ -520,7 +513,7 @@ var SPID = (function () {
                     </li>\
                 </ul>\
             </div>';
-        $("#spid-button").append(str_button);
+        $("#spid-prof-button").append(str_button);
         /* Random idp */
         var rootList = $("#spid-idp-list-medium-root-get");
         setTimeout(function() {
@@ -538,7 +531,7 @@ var SPID = (function () {
             $(this).attr('disabled','disabled');
             event.preventDefault();
             let idp_val = $(this).parent().attr('data-idp');
-            let url_redirect = window.location.origin+"/"+config.url+"?idp="+idp_val;
+            let url_redirect = window.location.origin+"/"+config.url+"?idp="+idp_val+"&tipo_accesso="+config.tipo_accesso;
             window.location.href = url_redirect;
         })
         $(".eidas-idp-button-link a").on('click',function(event){
