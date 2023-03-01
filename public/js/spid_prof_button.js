@@ -475,6 +475,9 @@ var SPIDPROF = (function () {
             </a>\
             <div id="spid-idp-button-medium-get" class="spid-idp-button spid-idp-button-tip spid-idp-button-relative">\
                 <ul id="spid-idp-list-medium-root-get" class="spid-idp-button-menu" aria-labelledby="spid-idp">\
+                    <li class="spid-idp-button-link" data-idp="teamsystemid">\
+                        <a href="#"><span class="spid-sr-only">TeamSystem ID</span><img src="'+config.path_img+'/spid-idp-teamsystemid.svg"  alt="TeamSystem ID" /></a>\
+                    </li>\
                     <li class="spid-idp-button-link" data-idp="arubaid">\
                         <a href="#"><span class="spid-sr-only">Aruba ID</span><img src="'+config.path_img+'/spid-idp-arubaid.svg"  alt="Aruba ID" /></a>\
                     </li>\
