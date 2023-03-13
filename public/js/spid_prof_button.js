@@ -424,7 +424,60 @@ jQuery &&
             t(window).on("resize", e);
     })(jQuery);
 
+        // * spid-idps.js *
+    // This script populate the SPID button with a remote json or the `idps` var content
+    //var queryURL = "js/JSON_IDP_list_EXAMPLE.json";
+    var queryURL = "https://registry.spid.gov.it/entities-idp?&output=json&custom=info_display_base";
+    var idps = [{"organization_name": "ArubaPEC S.p.A.", "entity_id": "https://loginspid.aruba.it", "logo_uri": "img/spid-idp-arubaid.svg"},{"organization_name": "InfoCert S.p.A.", "entity_id": "https://identity.infocert.it", "logo_uri": "img/spid-idp-infocertid.svg"},{"organization_name": "IN.TE.S.A. S.p.A.", "entity_id": "https://spid.intesa.it", "logo_uri": "img/spid-idp-intesaid.svg"},{"organization_name": "Lepida S.p.A.", "entity_id": "https://id.lepida.it/idp/shibboleth", "logo_uri": "img/spid-idp-lepidaid.svg"},{"organization_name": "Namirial", "entity_id": "https://idp.namirialtsp.com/idp", "logo_uri": "img/spid-idp-namirialid.svg"},{"organization_name": "Poste Italiane SpA", "entity_id": "https://posteid.poste.it", "logo_uri": "img/spid-idp-posteid.svg"},{"organization_name": "Sielte S.p.A.", "entity_id": "https://identity.sieltecloud.it", "logo_uri": "img/spid-idp-sielteid.svg"},{"organization_name": "Register.it S.p.A.", "entity_id": "https://spid.register.it", "logo_uri": "img/spid-idp-spiditalia.svg"},{"organization_name": "TI Trust Technologies srl", "entity_id": "https://login.id.tim.it/affwebservices/public/saml2sso", "logo_uri": "img/spid-idp-timid.svg"},{"organization_name": "TeamSystem s.p.a.", "entity_id": "https://spid.teamsystem.com/idp", "logo_uri": "img/spid-idp-teamsystemid.svg"},{"organization_name": "EtnaHitech S.C.p.A.", "entity_id": "https://id.eht.eu", "logo_uri": "img/spid-idp-etnaid.svg"}]
+    
+    const entity_id_map = {"https://loginspid.aruba.it" : "arubaid","https://identity.infocert.it" : "infocert", "https://spid.intesa.it" : "intesa", "https://id.lepida.it/idp/shibboleth" : "lepida", "https://idp.namirialtsp.com/idp" : "namirialid", "https://posteid.poste.it": "poste", "https://identity.sieltecloud.it" : "sielte", "https://spid.register.it" : "spiditalia", "https://spid.teamsystem.com/idp" : "teamsystemid","https://login.id.tim.it/affwebservices/public/saml2sso" : "tim","https://id.eht.eu" : "etnahitech"}
+    
+    // spid_populate function, if '.spid-button[data-spid-remote] ul' exist, try to get the remote json file and pupulate all spid buttons
+    function spid_populate(url_da_config,tipo_accesso_da_config) {
+        let spid_elements = document.querySelectorAll('ul[data-spid-remote]')
+        if (spid_elements.length > 0 ) {
+        fetch(queryURL)
+        .then(function (response) {
+            return response.json();
+            })
+        .then(function (idps) {
+            idps = idps.sort(() => Math.random() - 0.5)
+            for (var u = 0; u < spid_elements.length; u++) {
+            for (var i = 0; i < idps.length; i++) {spid_addIdpEntry(idps[i], spid_elements[u],url_da_config,tipo_accesso_da_config);}
 
+            }
+            })
+        .catch(function (error) {
+            console.log('Error during fetch: ' + error.message);
+            idps.sort(() => Math.random() - 0.5)
+            for (var u = 0; u < spid_elements.length; u++) {
+            for (var i = 0; i < idps.length; i++) { spid_addIdpEntry(idps[i], spid_elements[u],url_da_config,tipo_accesso_da_config); }
+            }
+        });
+        }
+    }
+
+    // function spid_addIdpEntry make a "li" element with the ipd link and prepend this in a element
+    //
+    // options:
+    // - data - is an object with "organization_name", "entity_id" and "logo_uri" values
+    // - element - is the element where is added the new "li" element
+    function spid_addIdpEntry(data, element,url_da_config,tipo_accesso_da_config) {                  
+        const att = document.createAttribute("data-idp");
+        att.value = data['entity_id'];
+        let li = document.createElement('li');
+        li.className = 'spid-idp-button-link';
+        li.setAttributeNode(att);
+        if (element.id.indexOf('post')!== -1) {
+            li.innerHTML = '<button class="idp-button-idp-logo" name="'+data['organization_name']+'" type="submit"><span class="spid-sr-only">'+data['organization_name']+'"</span><img class="spid-idp-button-logo" src="'+data['logo_uri']+'" alt="'+data['organization_name']+'" /></button></li>';
+        };  
+        if (element.id.indexOf('get')!== -1 || element.id.indexOf('prof')!== -1) {
+            let param = entity_id_map[data['entity_id']]
+            
+            li.innerHTML = '<a href="'+window.location.origin+'/'+url_da_config+'?idp='+param+'&tipo_accesso='+tipo_accesso_da_config+'"><span class="spid-sr-only">'+data['organization_name']+'</span><img src="'+data['logo_uri']+'" alt="'+data['organization_name']+'" /></a>';
+        };
+        element.prepend(li)
+    }
 
 /* classe per inizializzare bottone come spid-smart-button se inserito placeholder in pagina e inizializzata classe */
 var SPIDPROF = (function () {
@@ -469,53 +522,18 @@ var SPIDPROF = (function () {
             </div>';
         }
         
-        str_button += '<a href="#" class="italia-it-button italia-it-button-size-m button-spid" spid-idp-button="#spid-idp-button-medium-get" aria-haspopup="true" aria-expanded="false">\
-                <span class="italia-it-button-icon"><img src="'+config.path_img+'/spid-ico-circle-bb.svg"  alt="" /></span>\
-                <span class="italia-it-button-text">Entra con SPID</span>\
-            </a>\
-            <div id="spid-idp-button-medium-get" class="spid-idp-button spid-idp-button-tip spid-idp-button-relative">\
-                <ul id="spid-idp-list-medium-root-get" class="spid-idp-button-menu" aria-labelledby="spid-idp">\
-                    <li class="spid-idp-button-link" data-idp="teamsystemid">\
-                        <a href="#"><span class="spid-sr-only">TeamSystem ID</span><img src="'+config.path_img+'/spid-idp-teamsystemid.svg"  alt="TeamSystem ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="arubaid">\
-                        <a href="#"><span class="spid-sr-only">Aruba ID</span><img src="'+config.path_img+'/spid-idp-arubaid.svg"  alt="Aruba ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="infocert">\
-                        <a href="#"><span class="spid-sr-only">Infocert ID</span><img src="'+config.path_img+'/spid-idp-infocertid.svg"  alt="Infocert ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="intesa">\
-                        <a href="#"><span class="spid-sr-only">Intesa ID</span><img src="'+config.path_img+'/spid-idp-intesaid.svg"  alt="Intesa ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="lepida">\
-                        <a href="#"><span class="spid-sr-only">Lepida ID</span><img src="'+config.path_img+'/spid-idp-lepidaid.svg" alt="Lepida ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="namirialid">\
-                        <a href="#"><span class="spid-sr-only">Namirial ID</span><img src="'+config.path_img+'/spid-idp-namirialid.svg"  alt="Namirial ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="poste">\
-                        <a href="#"><span class="spid-sr-only">Poste ID</span><img src="'+config.path_img+'/spid-idp-posteid.svg"  alt="Poste ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="sielte">\
-                        <a href="#"><span class="spid-sr-only">Sielte ID</span><img src="'+config.path_img+'/spid-idp-sielteid.svg"  alt="Sielte ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="spiditalia">\
-                        <a href="#"><span class="spid-sr-only">SPIDItalia Register.it</span><img src="'+config.path_img+'/spid-idp-spiditalia.svg"  alt="SpidItalia" /></a>\
-                    </li>\
-                    <li class="spid-idp-button-link" data-idp="tim">\
-                        <a href="#"><span class="spid-sr-only">Tim ID</span><img src="'+config.path_img+'/spid-idp-timid.svg"  alt="Tim ID" /></a>\
-                    </li>\
-                    <li class="spid-idp-support-link">\
-                        <a href="https://www.spid.gov.it">Maggiori informazioni</a>\
-                    </li>\
-                    <li class="spid-idp-support-link">\
-                        <a href="https://www.spid.gov.it/richiedi-spid">Non hai SPID?</a>\
-                    </li>\
-                    <li class="spid-idp-support-link">\
-                        <a href="https://www.spid.gov.it/serve-aiuto">Serve aiuto?</a>\
-                    </li>\
-                </ul>\
-            </div>';
+        str_button +=   '<a href="#" class="italia-it-button italia-it-button-size-m button-spid" spid-idp-button="#spid-idp-button-medium-get" aria-haspopup="true" aria-expanded="false">\
+            <span class="italia-it-button-icon"><img src="'+config.path_img+'/spid-ico-circle-bb.svg"></span>\
+            <span class="italia-it-button-text">Entra con SPID</span>\
+        </a>\
+        <div id="spid-idp-button-medium-get" class="spid-idp-button spid-idp-button-tip spid-idp-button-relative">\
+            <ul id="spid-idp-list-medium-root-get" class="spid-idp-button-menu" data-spid-remote aria-labelledby="spid-idp">\
+                <li><a class="dropdown-item" href="https://www.spid.gov.it">Maggiori informazioni</a></li>\
+                <li><a class="dropdown-item" href="https://www.spid.gov.it/richiedi-spid">Non hai SPID?</a></li>\
+                <li><a class="dropdown-item" href="https://www.spid.gov.it/serve-aiuto">Serve aiuto?</a></li>\
+            </ul>\
+        </div>';
+
         $("#spid-prof-button").append(str_button);
         /* Random idp */
         var rootList = $("#spid-idp-list-medium-root-get");
@@ -528,15 +546,12 @@ var SPIDPROF = (function () {
             rootList.append(idpList.splice(Math.floor(Math.random() * idpList.length), 1)[0]);
         }
         rootList.append(lnkList);
-        /* gestione click su idp con invio parametro per scelta idp SPID */
-        $(".spid-idp-button-link a").on('click',function(event){
-            event.stopImmediatePropagation();
-            $(this).attr('disabled','disabled');
-            event.preventDefault();
-            let idp_val = $(this).parent().attr('data-idp');
-            let url_redirect = window.location.origin+"/"+config.url+"?idp="+idp_val+"&tipo_accesso="+config.tipo_accesso;
-            window.location.href = url_redirect;
-        })
+
+        /* attivo spid_populate per caricare lista bottoni */
+        jQuery(function(){
+            spid_populate(config.url,config.tipo_accesso);
+        });
+
         $(".eidas-idp-button-link a").on('click',function(event){
             event.stopImmediatePropagation();
             $(this).attr('disabled','disabled');
